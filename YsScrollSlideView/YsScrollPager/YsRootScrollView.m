@@ -23,22 +23,24 @@
     return self;
 }
 
+//获取内容控制器数组
 - (void)setContentVCArr:(NSArray *)contentVCArr
 {
     _contentVCArr = contentVCArr;
     [self setupContentVC];
 }
 
+//创建内容视图
 - (void)setupContentVC
 {
     CGFloat contentScrollW = _contentVCArr.count * self.frame.size.width;
     self.contentSize = CGSizeMake(contentScrollW, 40);
     UIViewController *contentVC = _contentVCArr[0];
     contentVC.view.frame = self.bounds;
-    contentVC.view.backgroundColor = [UIColor redColor];
     [self addSubview:contentVC.view];
 }
 
+//设置内容视图偏移
 - (void)rootContentOffsetWithIndex:(NSInteger)index
 {
     CGFloat offsetX = index * self.frame.size.width;
@@ -58,12 +60,8 @@
     //获得当前索引
     NSInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
     UIViewController *newsVC = _contentVCArr[index];
-    if (index == 2) {
-        newsVC.view.backgroundColor = [UIColor yellowColor];
-    }
     BOOL isExistVc = YES;
-    if (!newsVC.view.superview) {
-        NSLog(@"scrollView.bounds -- %@", NSStringFromCGRect(scrollView.bounds));
+    if (!newsVC.view.superview) {//如果当前控制器视图还没有被创建，才添加
         newsVC.view.frame = scrollView.bounds;
         [self addSubview:newsVC.view];
         isExistVc = NO;

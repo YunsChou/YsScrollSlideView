@@ -28,12 +28,12 @@
 - (void)setupTop
 {
     YsTopScrollView *topScroll = [[YsTopScrollView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
-    topScroll.backgroundColor = [UIColor cyanColor];
-    topScroll.titleNameArr = @[@"网易新闻", @"新浪微博新闻", @"搜狐", @"头条新闻", @"本地动态", @"精美图片集"];
+    topScroll.backgroundColor = [UIColor purpleColor];
+    topScroll.titleNameArr = @[@"五代火影", @"漩涡鸣人", @"佐助", @"小樱", @"copy忍者卡卡西", @"沙爆我爱罗"];
     topScroll.topClickBlock = ^(NSInteger index){
         [self.rootScroll rootContentOffsetWithIndex:index];
     };
-    //    topScroll.titleSelectIndex = 2;
+    topScroll.titleSelectIndex = 2;
     [self.view addSubview:topScroll];
     self.topScroll = topScroll;
 }
@@ -44,7 +44,7 @@
     rootScroll.rootScrollBlock = ^(NSInteger index, UIViewController *VC, BOOL isExistVC){
         [self.topScroll topContentOffsetWithIndex:index];
     };
-    rootScroll.backgroundColor = [UIColor lightGrayColor];
+    rootScroll.backgroundColor = [UIColor whiteColor];
     NSMutableArray *arr = [NSMutableArray array];
     for (NSInteger i = 0; i < 6; i ++) {
         BaseTestController *vc = [[BaseTestController alloc] init];

@@ -33,7 +33,7 @@
     topScroll.topClickBlock = ^(NSInteger index){
         [self.rootScroll rootContentOffsetWithIndex:index];
     };
-//    topScroll.titleSelectIndex = 2;
+    topScroll.selectLineView.hidden = YES;
     [self.view addSubview:topScroll];
     self.topScroll = topScroll;
 }
@@ -44,7 +44,7 @@
     rootScroll.rootScrollBlock = ^(NSInteger index, UIViewController *VC, BOOL isExistVC){
         [self.topScroll topContentOffsetWithIndex:index];
     };
-    rootScroll.backgroundColor = [UIColor lightGrayColor];
+    rootScroll.backgroundColor = [UIColor whiteColor];
     NSMutableArray *arr = [NSMutableArray array];
     for (NSInteger i = 0; i < 6; i ++) {
         BaseTestController *vc = [[BaseTestController alloc] init];
