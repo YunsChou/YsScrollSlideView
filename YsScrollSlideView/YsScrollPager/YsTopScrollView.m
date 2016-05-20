@@ -40,6 +40,8 @@
     _titleNameArr = titleNameArr;
     [self setupNameTitle];
     [self setupSelectLine];
+    //调用set方法，选中标题
+    self.titleSelectIndex = 0;
 }
 
 //创建顶部标题
@@ -92,25 +94,38 @@
 {
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor whiteColor];
-    if ([self.subviews[0] isKindOfClass:[UIButton class]]) {
-        UIButton *titleBtn = (UIButton *)self.subviews[0];
-        lineView.frame = CGRectMake(titleBtn.frame.origin.x, self.frame.size.height - Ys_kLineViewHight, titleBtn.frame.size.width, Ys_kLineViewHight);
-    }
+    CGRect lineFrame = lineView.frame;
+    lineFrame.size.height = 2;
+    lineView.frame = lineFrame;
     [self addSubview:lineView];
-    self.selectLineView = lineView;
+    self.self.selectLineView = lineView;
 }
 
 //设置默认选中项
 - (void)setTitleSelectIndex:(NSInteger)titleSelectIndex
 {
-    //设置默认下标并回调
+    _titleSelectIndex = titleSelectIndex + Ys_kTitleTagBase;
+    
     if (_topClickBlock) {
         _topClickBlock(titleSelectIndex);
     }
-    //计算初始化标题下标显示
+    
+    //将选中的按钮变为非选中状态
+    for (NSInteger i = 0; i < self.subviews.count; i ++) {
+        if ([self.subviews[i] isKindOfClass:[UIButton class]]) {
+            UIButton *titleBtn = (UIButton *)self.subviews[i];
+            if (titleBtn.selected) {
+                titleBtn.selected = NO;
+            }
+            self.selectLineView.frame = CGRectMake(titleBtn.frame.origin.x, self.frame.size.height - self.selectLineView.frame.size.height, titleBtn.frame.size.width, self.selectLineView.frame.size.height);
+        }
+    }
+    
+    //计算标题下标显示
     if ([self.subviews[titleSelectIndex] isKindOfClass:[UIButton class]]) {
         UIButton *titleBtn = (UIButton *)self.subviews[titleSelectIndex];
-        [self topButtonSelectStatus:titleBtn];
+        titleBtn.selected = YES;
+        self.selectLineView.frame = CGRectMake(titleBtn.frame.origin.x, self.frame.size.height - self.selectLineView.frame.size.height, titleBtn.frame.size.width, self.selectLineView.frame.size.height);
     }
 }
 
@@ -121,45 +136,41 @@
     if ([self.subviews[index] isKindOfClass:[UIButton class]]) {
         UIButton *titleBtn = (UIButton *)self.subviews[index];
         if (!titleBtn.selected) {
-            [self topButtonSelectStatus:titleBtn];
+            titleBtn.selected = YES;
         }
+        [self titleButtonClick:titleBtn];
+        //计算标题栏显示
+        CGFloat offsetX = titleBtn.center.x - self.frame.size.width / 2;
+        CGFloat offsetMax = self.contentSize.width - self.frame.size.width;
+        if (offsetX < 0) {
+            offsetX = 0;
+        }else if (offsetX > offsetMax){
+            offsetX = offsetMax;
+        }
+        CGPoint offset = CGPointMake(offsetX, self.contentOffset.y);
+        [self setContentOffset:offset animated:YES];
+        //计算标题下标显示
+        self.selectLineView.frame = CGRectMake(titleBtn.frame.origin.x, self.frame.size.height - self.selectLineView.frame.size.height, titleBtn.frame.size.width, self.selectLineView.frame.size.height);
     }
 }
 
 #pragma mark - 按钮点击事件
 - (void)titleButtonClick:(UIButton *)sender
 {
+    //更换按钮
+    if (sender.tag != _titleSelectIndex) {
+        //取消之前的按钮
+        UIButton *lastBtn = (UIButton *)[self viewWithTag:_titleSelectIndex];
+        lastBtn.selected = NO;
+        _titleSelectIndex = sender.tag;
+    }
+    
     if (!sender.selected) {
+        sender.selected = YES;
         //设置rootscroll滚动
         if (_topClickBlock) {
             _topClickBlock(sender.tag - Ys_kTitleTagBase);
         }
-        [self topButtonSelectStatus:sender];
-    }
-}
-//更换按钮选中状态
-- (void)topButtonSelectStatus:(UIButton *)sender
-{
-    sender.selected = YES;
-    //计算标题栏显示
-    CGFloat offsetX = sender.center.x - self.frame.size.width / 2;
-    CGFloat offsetMax = self.contentSize.width - self.frame.size.width;
-    if (offsetX < 0) {
-        offsetX = 0;
-    }else if (offsetX > offsetMax){
-        offsetX = offsetMax;
-    }
-    CGPoint offset = CGPointMake(offsetX, self.contentOffset.y);
-    [self setContentOffset:offset animated:YES];
-    //计算标题下标显示
-    self.selectLineView.frame = CGRectMake(sender.frame.origin.x, self.frame.size.height - Ys_kLineViewHight, sender.frame.size.width, Ys_kLineViewHight);
-    //更换按钮
-    if (sender.tag != _lastSelectIndex) {
-        //取消之前的按钮
-        UIButton *lastBtn = (UIButton *)[self viewWithTag:_lastSelectIndex];
-        lastBtn.selected = NO;
-        //记录上次按钮tag
-        _lastSelectIndex = sender.tag;
     }
 }
 
