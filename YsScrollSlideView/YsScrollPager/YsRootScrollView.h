@@ -15,6 +15,6 @@ typedef void(^YsRootScrollBlock)(NSInteger index, UIViewController *VC, BOOL isE
 @property (nonatomic, strong) NSArray *contentVCArr;
 /**底部滚动事件*/
 @property (nonatomic, copy) YsRootScrollBlock rootScrollBlock;
-/**底部滚动*/
+/**底部滚动（若初始化时：需要跳转到指定下标。top和root，调用后创建对象的方法跳转到指定下标）*/
 - (void)rootContentOffsetWithIndex:(NSInteger)index;
 @end

@@ -23,24 +23,22 @@
     return self;
 }
 
-//获取内容控制器数组
 - (void)setContentVCArr:(NSArray *)contentVCArr
 {
     _contentVCArr = contentVCArr;
     [self setupContentVC];
 }
 
-//创建内容视图
 - (void)setupContentVC
 {
+    NSAssert(self.contentVCArr.count != 0, @"必须先传入控制器数组");
     CGFloat contentScrollW = _contentVCArr.count * self.frame.size.width;
-    self.contentSize = CGSizeMake(contentScrollW, 40);
+    self.contentSize = CGSizeMake(contentScrollW, 0);
     UIViewController *contentVC = _contentVCArr[0];
     contentVC.view.frame = self.bounds;
     [self addSubview:contentVC.view];
 }
 
-//设置内容视图偏移
 - (void)rootContentOffsetWithIndex:(NSInteger)index
 {
     CGFloat offsetX = index * self.frame.size.width;
@@ -61,15 +59,16 @@
     NSInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
     UIViewController *newsVC = _contentVCArr[index];
     BOOL isExistVc = YES;
-    if (!newsVC.view.superview) {//如果当前控制器视图还没有被创建，才添加
+    if (!newsVC.view.superview) {
         newsVC.view.frame = scrollView.bounds;
         [self addSubview:newsVC.view];
         isExistVc = NO;
     }
     //设置topscroll滚动
     if (_rootScrollBlock) {
-        _rootScrollBlock(index,newsVC,isExistVc);
+        _rootScrollBlock(index, newsVC, isExistVc);
     }
 }
+
 
 @end
