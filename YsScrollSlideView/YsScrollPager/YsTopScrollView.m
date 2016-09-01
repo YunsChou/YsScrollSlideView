@@ -47,29 +47,27 @@
         [titleBtn setAttributedTitle:[self titleAttributedWithString:titleName font:_normalFont color:_normalColor] forState:UIControlStateNormal];
         [titleBtn setAttributedTitle:[self titleAttributedWithString:titleName font:_selectFont color:_selectColor] forState:UIControlStateSelected];
         
-        CGFloat labelW = 0;
+        CGFloat titleBtnW = 0;
         if (_isAVGPage) {
-            labelW = self.frame.size.width / _titleNameArr.count;
+            titleBtnW = self.frame.size.width / _titleNameArr.count;
         }else{
-            CGFloat titleBtnW = [self titleWidthWithString:titleName font:titleBtn.titleLabel.font].width;
-            labelW = titleBtnW + 20;
+            titleBtnW = [self titleWidthWithString:titleName font:titleBtn.titleLabel.font].width + 20;
         }
-        CGFloat lableH = 40;
-        CGFloat labelY = 0;
-        CGFloat labelX = titleScrollW;
-        titleScrollW += labelW;
-        titleBtn.frame = CGRectMake(labelX, labelY, labelW, lableH);
+        titleBtn.frame = CGRectMake(titleScrollW, 0, titleBtnW, self.bounds.size.height);
         titleBtn.tag = i + Ys_kTagBase;
         if (i == 0) {
             titleBtn.selected = YES;
         }
         [titleBtn addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:titleBtn];
+        
+        titleScrollW += titleBtnW;
     }
+    //顶部不能铺满的情况
     if (titleScrollW < self.frame.size.width) {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, titleScrollW, self.frame.size.height);
     }
-    self.contentSize = CGSizeMake(titleScrollW, 40);
+    self.contentSize = CGSizeMake(titleScrollW, self.bounds.size.height);
 }
 
 - (void)setupBottomLine
