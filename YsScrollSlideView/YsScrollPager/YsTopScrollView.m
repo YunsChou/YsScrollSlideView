@@ -44,16 +44,8 @@
     for (NSInteger i = 0; i < _titleNameArr.count; i ++) {
         NSString *titleName = _titleNameArr[i];
         UIButton *titleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        NSMutableAttributedString *mAttriNormalStr = [[NSMutableAttributedString alloc] initWithString:titleName];
-        [mAttriNormalStr addAttribute:NSFontAttributeName value:_normalFont range:NSMakeRange(0, titleName.length)];
-        [mAttriNormalStr addAttribute:NSForegroundColorAttributeName value:_normalColor range:NSMakeRange(0, titleName.length)];
-        [titleBtn setAttributedTitle:mAttriNormalStr forState:UIControlStateNormal];
-        
-        NSMutableAttributedString *mAttriSelectStr = [[NSMutableAttributedString alloc] initWithString:titleName];
-        [mAttriSelectStr addAttribute:NSFontAttributeName value:_selectFont range:NSMakeRange(0, titleName.length)];
-        [mAttriSelectStr addAttribute:NSForegroundColorAttributeName value:_selectColor range:NSMakeRange(0, titleName.length)];
-        [titleBtn setAttributedTitle:mAttriSelectStr forState:UIControlStateSelected];
+        [titleBtn setAttributedTitle:[self titleAttributedWithString:titleName font:_normalFont color:_normalColor] forState:UIControlStateNormal];
+        [titleBtn setAttributedTitle:[self titleAttributedWithString:titleName font:_selectFont color:_selectColor] forState:UIControlStateSelected];
         
         CGFloat labelW = 0;
         if (_isAVGPage) {
@@ -134,6 +126,15 @@
             _topClickBlock(sender.tag - Ys_kTagBase);
         }
     }
+}
+
+#pragma mark - 属性设置
+- (NSAttributedString *)titleAttributedWithString:(NSString *)string font:(UIFont *)font color:(UIColor *)color
+{
+    NSMutableAttributedString *mAttributeStr = [[NSMutableAttributedString alloc] initWithString:string];
+    [mAttributeStr addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, string.length)];
+    [mAttributeStr addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, string.length)];
+    return mAttributeStr;
 }
 
 //计算文本的自适应高度

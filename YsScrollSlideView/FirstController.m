@@ -28,7 +28,7 @@
 - (void)setupTop
 {
     YsTopScrollView *topScroll = [[YsTopScrollView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
-    topScroll.backgroundColor = [UIColor cyanColor];
+    topScroll.backgroundColor = [UIColor redColor];
     topScroll.titleNameArr = @[@"网易新闻", @"新浪微博新闻", @"搜狐", @"头条新闻", @"本地动态", @"精美图片集"];
     topScroll.topClickBlock = ^(NSInteger index){
         [self.rootScroll rootContentOffsetWithIndex:index];
