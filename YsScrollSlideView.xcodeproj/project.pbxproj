@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10F3AD31D78195C002A1C1E /* YsRootScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A10F3AD01D78195C002A1C1E /* YsRootScrollView.m */; };
+		A10F3AD41D78195C002A1C1E /* YsTopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A10F3AD21D78195C002A1C1E /* YsTopScrollView.m */; };
 		A1D2A4231CA0F17600B34E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A4221CA0F17600B34E41 /* main.m */; };
 		A1D2A4261CA0F17600B34E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A4251CA0F17600B34E41 /* AppDelegate.m */; };
 		A1D2A42C1CA0F17700B34E41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D2A42A1CA0F17700B34E41 /* Main.storyboard */; };
@@ -15,11 +17,13 @@
 		A1D2A4401CA0F20100B34E41 /* FirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A43F1CA0F20100B34E41 /* FirstController.m */; };
 		A1D2A4431CA0F20A00B34E41 /* SecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A4421CA0F20A00B34E41 /* SecondController.m */; };
 		A1D2A4461CA0F28E00B34E41 /* BaseTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A4451CA0F28E00B34E41 /* BaseTestController.m */; };
-		A1D2A44C1CA0F9CC00B34E41 /* YsRootScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A4491CA0F9CC00B34E41 /* YsRootScrollView.m */; };
-		A1D2A44D1CA0F9CC00B34E41 /* YsTopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D2A44B1CA0F9CC00B34E41 /* YsTopScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10F3ACF1D78195C002A1C1E /* YsRootScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsRootScrollView.h; sourceTree = "<group>"; };
+		A10F3AD01D78195C002A1C1E /* YsRootScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsRootScrollView.m; sourceTree = "<group>"; };
+		A10F3AD11D78195C002A1C1E /* YsTopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsTopScrollView.h; sourceTree = "<group>"; };
+		A10F3AD21D78195C002A1C1E /* YsTopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsTopScrollView.m; sourceTree = "<group>"; };
 		A1D2A41E1CA0F17600B34E41 /* YsScrollSlideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YsScrollSlideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D2A4221CA0F17600B34E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A1D2A4241CA0F17600B34E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -34,10 +38,6 @@
 		A1D2A4421CA0F20A00B34E41 /* SecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondController.m; sourceTree = "<group>"; };
 		A1D2A4441CA0F28E00B34E41 /* BaseTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestController.h; sourceTree = "<group>"; };
 		A1D2A4451CA0F28E00B34E41 /* BaseTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestController.m; sourceTree = "<group>"; };
-		A1D2A4481CA0F9CC00B34E41 /* YsRootScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsRootScrollView.h; sourceTree = "<group>"; };
-		A1D2A4491CA0F9CC00B34E41 /* YsRootScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsRootScrollView.m; sourceTree = "<group>"; };
-		A1D2A44A1CA0F9CC00B34E41 /* YsTopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YsTopScrollView.h; sourceTree = "<group>"; };
-		A1D2A44B1CA0F9CC00B34E41 /* YsTopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YsTopScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +51,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A10F3ACE1D78195C002A1C1E /* YsScrollPager */ = {
+			isa = PBXGroup;
+			children = (
+				A10F3ACF1D78195C002A1C1E /* YsRootScrollView.h */,
+				A10F3AD01D78195C002A1C1E /* YsRootScrollView.m */,
+				A10F3AD11D78195C002A1C1E /* YsTopScrollView.h */,
+				A10F3AD21D78195C002A1C1E /* YsTopScrollView.m */,
+			);
+			path = YsScrollPager;
+			sourceTree = "<group>";
+		};
 		A1D2A4151CA0F17600B34E41 = {
 			isa = PBXGroup;
 			children = (
@@ -70,7 +81,7 @@
 		A1D2A4201CA0F17600B34E41 /* YsScrollSlideView */ = {
 			isa = PBXGroup;
 			children = (
-				A1D2A4471CA0F9CC00B34E41 /* YsScrollPager */,
+				A10F3ACE1D78195C002A1C1E /* YsScrollPager */,
 				A1D2A4241CA0F17600B34E41 /* AppDelegate.h */,
 				A1D2A4251CA0F17600B34E41 /* AppDelegate.m */,
 				A1D2A43E1CA0F20100B34E41 /* FirstController.h */,
@@ -94,17 +105,6 @@
 				A1D2A4221CA0F17600B34E41 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A1D2A4471CA0F9CC00B34E41 /* YsScrollPager */ = {
-			isa = PBXGroup;
-			children = (
-				A1D2A44A1CA0F9CC00B34E41 /* YsTopScrollView.h */,
-				A1D2A44B1CA0F9CC00B34E41 /* YsTopScrollView.m */,
-				A1D2A4481CA0F9CC00B34E41 /* YsRootScrollView.h */,
-				A1D2A4491CA0F9CC00B34E41 /* YsRootScrollView.m */,
-			);
-			path = YsScrollPager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,12 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1D2A4401CA0F20100B34E41 /* FirstController.m in Sources */,
-				A1D2A44C1CA0F9CC00B34E41 /* YsRootScrollView.m in Sources */,
+				A10F3AD31D78195C002A1C1E /* YsRootScrollView.m in Sources */,
 				A1D2A4461CA0F28E00B34E41 /* BaseTestController.m in Sources */,
 				A1D2A4431CA0F20A00B34E41 /* SecondController.m in Sources */,
 				A1D2A4261CA0F17600B34E41 /* AppDelegate.m in Sources */,
 				A1D2A4231CA0F17600B34E41 /* main.m in Sources */,
-				A1D2A44D1CA0F9CC00B34E41 /* YsTopScrollView.m in Sources */,
+				A10F3AD41D78195C002A1C1E /* YsTopScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +330,7 @@
 				A1D2A4371CA0F17700B34E41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
